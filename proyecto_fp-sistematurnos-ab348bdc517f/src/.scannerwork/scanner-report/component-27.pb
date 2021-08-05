@@ -1,0 +1,1 @@
+0espol/edu/ec/presentacion/pantalla/Pantalla.java 2javaX½hr0espol/edu/ec/presentacion/pantalla/Pantalla.java

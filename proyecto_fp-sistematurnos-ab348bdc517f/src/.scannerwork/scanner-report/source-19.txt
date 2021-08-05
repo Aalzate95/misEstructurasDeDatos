@@ -1,0 +1,112 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package espol.edu.ec.presentacion.admin;
+
+import espol.edu.ec.presentacion.SistemaTurnosG3;
+import espol.edu.ec.modelo.tdas.Medico;
+import espol.edu.ec.utilitarios.CONSTANTES;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+
+/**
+ *
+ * @author Charles
+ */
+public class StageAdminMedico {
+
+    public static Scene AdminMedico() {
+
+        //Labels
+        Label lbcedula = new Label("CEDULA");
+        Label lbnombre = new Label("NOMBRES");
+        Label lbapellidos = new Label("APELLIDOS");
+        Label lbedad = new Label("EDAD");
+        //Campos de Texto
+        TextField tfcedu = new TextField();
+        TextField tfnom = new TextField();
+        TextField tfape = new TextField();
+        TextField tfedad = new TextField();
+        //Botones
+        Button crear = new Button("CREAR");
+        Button menu = new Button("MENU");
+        Button asignar = new Button("ASIGNAR PUESTO");
+        //Layout para la escena
+        AnchorPane ap = new AnchorPane();
+
+        
+        VBox label = new VBox();
+        label.getChildren().addAll(lbcedula, lbnombre, lbapellidos, lbedad);
+        label.setSpacing(40);
+        
+        VBox campos = new VBox();
+        campos.getChildren().addAll(tfcedu, tfnom, tfape, tfedad);
+        campos.setSpacing(30);
+
+        HBox hb = new HBox();
+        HBox botones = new HBox();
+
+        hb.getChildren().addAll(label, campos);
+        hb.setSpacing(20);
+        hb.setLayoutX(200);
+
+        botones.getChildren().addAll(crear, menu, asignar);
+        botones.setSpacing(30);
+        botones.setLayoutX(200);
+
+        ap.getChildren().addAll(hb, botones);
+        AnchorPane.setTopAnchor(hb, 80.0);
+        AnchorPane.setBottomAnchor(botones, 50.0);
+
+        //Evento del boton crear
+        crear.setOnAction(e -> {
+            //Se guarda cada valor del campo en una variable
+            String cedula = tfcedu.getText();
+            String nombre = tfnom.getText();
+            String apellido = tfape.getText();
+            String edad = tfedad.getText();
+            //Validar que todos los campos esten llenos
+            //En el caso de que esten vacios, se dara un mensaje de advertencia
+            if (cedula.equals("") || nombre.equals("") || apellido.equals("") || edad.equals("")) {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setTitle("MENSAJE DEL SISTEMA");
+                a.setContentText("UNO DE LOS CAMPOS ESTA VACIO");
+                a.showAndWait();
+
+            } // Caso contrario, se guardara correctamente
+            else {
+                //Se utiliza el metodo para almacenar el medico en el atchivo de texto
+//                Medico.escribirMedico(cedula, nombre, apellido, Integer.parseInt(edad), 0);
+
+                //Se vacian los campos de texto
+                tfcedu.setText("");
+                tfnom.setText("");
+                tfape.setText("");
+                tfedad.setText("");
+            }
+
+        });
+
+        //Evento del boton asignar
+        //Evento del boton menu
+        menu.setOnAction(e -> {
+            //Regresa al menu Principal
+            SistemaTurnosG3.primaryStage.setScene(StageAdmin.crearMA());
+        });
+
+        //Creacion de la escena que se retorna
+        Scene scmedicos = new Scene(ap, CONSTANTES.ANCHO_MENUADMIN, CONSTANTES.ALTO_MENUADMIN);
+
+        return scmedicos;
+
+    }
+
+}

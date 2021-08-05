@@ -1,0 +1,52 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package espol.edu.ec.presentacion;
+
+import espol.edu.ec.modelo.Sistema;
+import espol.edu.ec.presentacion.pantalla.Pantalla;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+
+/**
+ *
+ * @author scmz2607
+ */
+public class SistemaTurnosG3 extends Application{
+    public static Stage primaryStage;
+    public static Scene logScene;
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        SistemaTurnosG3.primaryStage = primaryStage;
+        logScene = Autenticacion.login();
+
+        primaryStage.resizableProperty().setValue(Boolean.FALSE);
+
+        primaryStage.setTitle("Servicio de Atencion Medica");
+        primaryStage.setScene(logScene);
+        primaryStage.setOnCloseRequest((WindowEvent t) -> {
+            Pantalla.cerrar();
+        });
+        primaryStage.show();
+    }
+    
+    public static void main(String[] args) {
+        launch(args);
+
+    }
+    
+    @Override
+    public void init(){
+        Sistema.inicializar();
+    }
+    
+    @Override
+    public void stop(){
+        Sistema.inicializaMedicosText();
+    }
+}

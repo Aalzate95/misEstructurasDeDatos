@@ -1,0 +1,187 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package espol.edu.ec.modelo;
+
+import espol.edu.ec.presentacion.admin.FormNuevoPaciente;
+import espol.edu.ec.modelo.tdas.Medico;
+import espol.edu.ec.modelo.tdas.Paciente;
+import espol.edu.ec.modelo.tdas.Puesto;
+import espol.edu.ec.modelo.tdas.Sintoma;
+import espol.edu.ec.presentacion.admin.StageAdmin;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author scmz2607
+ */
+public class Sistema {
+    public static List<Paciente> pacientes;
+    public static List<Medico> medicos;
+    public static List<Sintoma> sintomas;
+    public static List<Puesto> puestos;
+    public static PriorityQueue<Paciente> lpriorPacientes;
+    
+    public static void inicializar() {
+        cargarSintomas();
+        cargarPacientes();
+        cargarPuestos();
+        Sistema.cargarMedicos();
+        System.out.println(medicos);
+        
+    }
+
+    private static void cargarSintomas() {
+        sintomas = new LinkedList<>();
+        File f = new File("sintomas.txt");
+        try {
+            Scanner s = new Scanner(f);
+            while (s.hasNextLine()) {
+                String line = s.nextLine();
+                String[] texto = line.split("\\|");
+                sintomas.add(new Sintoma(texto[0], Integer.valueOf(texto[1])));
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FormNuevoPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    //Metodo privado que permite obtener una lista con los sintomas
+    public static List<Sintoma> getSintomas() {
+        return sintomas;
+    }
+    
+    
+    public static void cargarPacientes(){
+        pacientes = ListaPacientes();
+//        pacientes.add(new Paciente("0928283373", "Lessette Carolina", "Zambrano Zurita", "F", 28, sintomaPorNombre("JAQUECA")));
+//        pacientes.add(new Paciente("0908020290", "Glenda Rosalia", "Zurita Rosado", "F", 56, sintomaPorNombre("FIEBRE")));
+        lpriorPacientes = new PriorityQueue<>((Paciente p1, Paciente p2)-> p1.getSintoma().getPrioridad()-p2.getSintoma().getPrioridad());
+        lpriorPacientes.addAll(pacientes);
+    }
+    
+    public static void addPaciente(Paciente p){
+        pacientes.add(p);
+        lpriorPacientes.offer(p);
+    }
+
+    //Metodo que devuelve una LinkedList de los Pacientes actuales
+    public static LinkedList<Paciente> ListaPacientes() {
+        LinkedList<Paciente> lp = new LinkedList<>();
+        File f = new File("pacientes.txt");
+        try {
+            Scanner sc = new Scanner(f);
+            while (sc.hasNextLine()) {
+                String linea = sc.nextLine();
+                String[] texto = linea.split(",");
+                Paciente p = new Paciente(texto[0], texto[1], texto[2], texto[3], Integer.parseInt(texto[4]), sintomaPorNombre(texto[5]));
+                lp.addLast(p);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lp;
+    }
+
+    // Metodo que devuelve el Sintoma que se le asigna a cada Paciente
+    private static Sintoma sintomaPorNombre(String nomSintoma) {
+        return sintomas.stream().filter(s->s.getTipo().equalsIgnoreCase(nomSintoma)).findAny().orElse(null);
+    }
+    
+    private static Puesto puestoPorId(int id){
+        return puestos.stream().filter(s->s.getId()==id).findAny().orElse(null);
+    }
+    
+    public static Medico medPorPuesto(Puesto p){
+        return medicos.stream().filter(m->m.getPuesto().equals(p)).findAny().orElse(null);
+    }
+    
+    public static List<Paciente> getPacientes(){
+        return pacientes;
+    }
+    
+    public static List<Medico> getMedicos(){
+        return medicos;
+    }
+    
+    public static List<Puesto> getPuestos(){
+        return puestos;
+    }
+    
+    private static void cargarPuestos() {
+        puestos = new LinkedList<>();
+        try {
+            File f = new File("puestos.txt");
+            Scanner s = new Scanner(f);
+            while (s.hasNextLine()) {
+                String line = s.nextLine();
+                String[] texto = line.split(",");
+                Puesto p = new Puesto(Integer.valueOf(texto[0]),null);
+                
+                puestos.add(p);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("El archivo no existe...");
+        }
+    }
+
+    //Por el momento se utilizara el Linked List de java
+    //Metodo que lee el archivo donde estan los medicos  y devuelve una lista de Medico
+    public static void cargarMedicos() {
+        medicos = new LinkedList<>();
+        try {
+            File f = new File("medicos.txt");
+            Scanner s = new Scanner(f);
+            while (s.hasNextLine()) {
+                String line = s.nextLine();
+                String[] texto = line.split(",");
+                Medico m = new Medico(texto[0], texto[1], texto[2], Integer.parseInt(texto[3]));
+                if(!texto[4].trim().equals("0")){
+                    Puesto pt = puestoPorId(Integer.valueOf(texto[4]));
+                    m.setPuesto(pt);
+                    pt.setM(m);
+                    pt.setLibre(false);
+                }
+                medicos.add(m);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("El archivo no existe...");
+        }
+    }
+
+    //Metodo que permite actualizar la informacion de los medicos
+    public static void ActualizaMedicosText() {
+        FileWriter fw;
+        try {
+            fw = new FileWriter("medicos.txt");
+            try (final BufferedWriter bw = new BufferedWriter(fw)) {
+                for (Medico m : medicos) {
+                    if (m.getPuesto() != null) {
+                        bw.write(m.getCedula() + "," + m.getNombres() + "," + m.getApellidos() + "," + m.getEdad() + "," + m.getPuesto());
+                    } else {
+                        bw.write(m.getCedula() + "," + m.getNombres() + "," + m.getApellidos() + "," + m.getEdad() + ",0");
+                    }
+                    bw.newLine();
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(StageAdmin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(StageAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+}

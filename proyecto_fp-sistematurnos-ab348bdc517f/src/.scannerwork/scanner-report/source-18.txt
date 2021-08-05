@@ -1,0 +1,154 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package espol.edu.ec.presentacion.admin;
+
+import espol.edu.ec.presentacion.SistemaTurnosG3;
+import espol.edu.ec.presentacion.pantalla.Pantalla;
+import espol.edu.ec.utilitarios.CONSTANTES;
+import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+
+/**
+ *
+ * @author scmz2607
+ */
+public class StageAdmin {
+
+    private static BorderPane root;
+    private static MenuBar menu;
+    private static Scene scAdmin;
+    private static Gestion leftGestion;
+    public static Button btnGestion;
+    
+    public static Scene crearMA() {
+        Pantalla.mostrar();
+        root = new BorderPane();
+        root.setStyle("-fx-border-color: black;");
+//        root.setPadding(new Insets(0, 0, 0, 0));
+        try {
+            Image img = new Image(SistemaTurnosG3.class.getResourceAsStream(
+                    CONSTANTES.RUTA_IMAGENES + "2.jpg"));
+            Image image = new Image(SistemaTurnosG3.class.getResourceAsStream(
+                    CONSTANTES.RUTA_IMAGENES + "logo.png"));
+            ImageView im = new ImageView(image);
+            Background Bg = new Background(new BackgroundImage(img,
+                    BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                    new BackgroundSize(563, 352, false, false, true, true)));
+            root.setBackground(Bg);
+            root.setTop(crearTop(im));
+//            root.setCenter(crearCentro());
+            
+        } catch (Exception e) {
+            System.out.println("no hay imagen");
+        }
+        scAdmin = new Scene(root, CONSTANTES.ANCHO_MENUADMIN, CONSTANTES.ALTO_MENUADMIN);
+        return scAdmin;
+    }
+    
+    private static Pane crearTop(ImageView imv){
+        VBox vbTop = new VBox();
+        vbTop.setSpacing(10);
+        
+        HBox hbMenu = new HBox();
+        hbMenu.setStyle("-fx-background-color: gray; -fx-backgroun-opacity: 0.5;");
+        HBox hbPrimero = new HBox();
+        hbPrimero.setSpacing(10);
+        
+        imv.setFitHeight(100);
+        imv.setFitWidth(100);
+        imv.setLayoutX(10);
+        imv.setLayoutY(10);
+        Label lblMenuAdmin = new Label("MENU DE AMINISTRADOR");
+        lblMenuAdmin.setLayoutX(CONSTANTES.ANCHO_MENUADMIN/4.0);
+        lblMenuAdmin.setLayoutY(30);
+        lblMenuAdmin.setFont(new Font("sans-serif bold", 20));
+        lblMenuAdmin.setStyle("-fx-text-fill: gray;");
+        
+        hbPrimero.getChildren().addAll(imv,lblMenuAdmin);
+        btnGestion = new Button("Gestion");
+//        btnGestion.setStyle("-fx-text-fill: white;");
+        
+        btnGestion.setPadding(new Insets(10,20,10,20));
+        Button btnAtencion = new Button("Atencion");
+        btnAtencion.setPadding(new Insets(10,20,10,20));
+//        btnAtencion.setStyle("-fx-background-color: black;" + "-fx-text-fill: white");
+        
+        hbMenu.getChildren().addAll(btnGestion, btnAtencion);
+        
+        menu = new MenuBar();
+//        Button gestion = new Button("Gestion");
+        Menu Pacientes = new Menu("Pacientes");
+        Menu Medicos = new Menu("Medicos");
+        Menu Puestos= new Menu("Puestos");
+        //Menu de Pacientes
+        MenuItem pingre = new MenuItem("Agregar Paciente");
+        MenuItem pantalla= new MenuItem("Pantalla de Espera");
+        Pacientes.getItems().add(pingre);
+        Pacientes.getItems().add(pantalla);
+        //Menu Medicos
+        MenuItem mingre= new MenuItem("Agregar Medico");
+        Medicos.getItems().add(mingre);
+        //Menu Puestos
+//        menu.getChildrenUnmodifiable().add(gestion);
+        MenuItem puingre= new MenuItem("Agregar Puesto");
+        Puestos.getItems().add(puingre);
+        //Agregar todo al menu
+        menu.getMenus().addAll(Pacientes, Medicos,Puestos);
+        
+        //Eventos del Menu
+        btnGestion.setOnAction(e->{
+            leftGestion = new Gestion();
+            root.setCenter(leftGestion.getContent());
+        });
+        
+        btnAtencion.setOnAction(e->{
+            btnGestion.setDisable(false);
+        });
+        
+        mingre.setOnAction(e->{
+        SistemaTurnosG3.primaryStage.setScene(StageAdminMedico.AdminMedico());
+        });
+
+        puingre.setOnAction(e->{
+        SistemaTurnosG3.primaryStage.setScene(StageAdminPuestos.AdminPuestos());
+        });
+        
+//        pingre.setOnAction(e->{
+//        SistemaTurnosG3.primaryStage.setScene(FormNuevoPaciente.AdminPacientes());
+//        
+//        
+//        });
+        
+        vbTop.getChildren().addAll(hbPrimero,hbMenu);
+        
+        return vbTop;
+    }
+    
+    
+    
+}

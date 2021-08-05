@@ -1,0 +1,3 @@
+0929203939,luis,zambra,35,1
+0923456758,carlos,sanchez,38,0
+0923423231,pedro,avila,23,2

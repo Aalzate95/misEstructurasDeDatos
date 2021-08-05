@@ -1,0 +1,1 @@
+4espol/edu/ec/presentacion/admin/GestionPaciente.java 2javaXXhr4espol/edu/ec/presentacion/admin/GestionPaciente.java

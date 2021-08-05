@@ -1,0 +1,5 @@
+0925353146,Carlos Luis,Sanchez Acosta,M,20,Jaqueca,J1
+0907856544,Karla Alexandra,Sanchez Acosta,F,21,Diarrea,D1
+0965523124,Paula Maria,Serrano Gomez,F,17,Diarrea,D2
+0963365588,Luis Armando,Sarco Perez,M,20,Congestion,C1
+0925353777,Pedro Luis,Ramos Cevallos,M,22,Jaqueca,J20

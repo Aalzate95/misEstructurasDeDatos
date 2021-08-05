@@ -1,0 +1,57 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package espol.edu.ec.modelo.tdas;
+
+/**
+ *
+ * @author Charles
+ */
+public class Puesto {
+    private int id;
+    private Medico m;
+    private boolean libre;
+    public static int contadorPuesto = 0;
+    
+    public Puesto(int id, Medico m){
+        this.id= ++contadorPuesto;
+        //Al inicio el puesto no tendra un medico asignado
+        this.m= null;
+        this.libre= true;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Medico getM() {
+        return m;
+    }
+
+    public void setM(Medico m) {
+        this.m = m;
+    }
+
+    public boolean isLibre() {
+        return libre;
+    }
+
+    public void setLibre(boolean libre) {
+        this.libre = libre;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(id);
+    }
+    
+   
+    
+    
+}

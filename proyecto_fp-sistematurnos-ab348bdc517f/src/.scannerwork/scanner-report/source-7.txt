@@ -1,0 +1,122 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package espol.edu.ec.modelo.tdas;
+
+import espol.edu.ec.presentacion.admin.StageAdmin;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.Alert;
+
+/**
+ *
+ * @author Charles
+ */
+public class Medico {
+
+    private String cedula;
+    private String nombres;
+    private String apellidos;
+    private int edad;
+    private Puesto puesto;
+//    private int idpuesto;
+
+    public Medico(String cedula, String nombres, String apellidos, int edad) {
+        this.cedula = cedula;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.edad = edad;
+        puesto = null;
+        //Al inicio el medico no tiene algun consultorio designado
+//        this.idpuesto = idpuesto;
+    }
+
+    public Puesto getPuesto() {
+        return puesto;
+    }
+
+    public void setPuesto(Puesto puesto) {
+        this.puesto = puesto;
+    }
+
+    
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String Nombre) {
+        this.nombres = Nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String Apellidos) {
+        this.apellidos = Apellidos;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String Cedula) {
+        this.cedula = Cedula;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int Edad) {
+        this.edad = Edad;
+    }
+    
+
+    @Override
+    public String toString() {
+        return cedula+"\\| "+nombres+" "+apellidos;
+    }
+    
+
+    //Metodo que permite escribir sobre el archivo de texto un nuevo medico
+    public static void escribirMedico(Medico m) {
+        FileWriter fw;
+
+        try {
+            fw = new FileWriter("medicos.txt", true);
+            try (BufferedWriter bw = new BufferedWriter(fw)) {
+                //Se escribe en el archivo de texto los datos del Doctor
+                if (m.getPuesto() != null) {
+                bw.write(m.cedula + "," + m.nombres + "," + m.apellidos + "," + m.edad + "," + m.puesto);
+                }else{
+                    bw.write(m.cedula + "," + m.nombres + "," + m.apellidos + "," + m.edad + ",0");
+                }
+                bw.newLine();
+                //Se confirma que el proceso ha sido exitoso
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+                a1.setTitle("SISTEMA");
+                a1.setContentText("DATOS GUARDADOS CORRECTAMENTE");
+                a1.showAndWait();
+
+            } catch (IOException ex) {
+                Logger.getLogger(StageAdmin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(StageAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+        
+}

@@ -1,0 +1,6 @@
+Convulsiones|0
+Vomito|2
+Diarrea|1
+Fiebre|3
+Congestion|5
+Jaqueca|4
