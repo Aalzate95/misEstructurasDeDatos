@@ -1,0 +1,161 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package espol.edu.ec.presentacion.admin;
+
+import espol.edu.ec.modelo.Sistema;
+import espol.edu.ec.presentacion.SistemaTurnosG3;
+import espol.edu.ec.modelo.tdas.Medico;
+import espol.edu.ec.modelo.tdas.Puesto;
+import espol.edu.ec.utilitarios.CONSTANTES;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+
+/**
+ *
+ * @author Charles
+ */
+public class StageAdminPuestos {
+
+    private static int posicion;
+
+    public static Scene AdminPuestos() {
+
+        //Labels
+        Label id = new Label("ID");
+        Label medico = new Label("MEDICO");
+
+        //Textfield
+        TextField tfid = new TextField();
+        TextField tfmedico = new TextField();
+        tfmedico.setDisable(true);
+        //Botones
+
+        Button crear = new Button("CREAR");
+        Button asignar = new Button("ASIGNAR MEDICO");
+        Button menu = new Button("MENU");
+
+        //ListViewer
+        //Se crea una lista que muestra Doctores que aun no tienen asignado un puesto
+        ListView list = new ListView<>();
+        ObservableList<String> items = FXCollections.observableArrayList();
+        LinkedList<Medico> lm = (LinkedList<Medico>) Sistema.getMedicos();
+        for (Medico m : lm) {
+            if (m.getPuesto().getId()==0) {
+                String completo = m.getNombres() + " " + m.getApellidos();
+                items.add(completo);
+            }
+
+        }
+        list.setItems(items);
+        list.setPrefHeight(50);
+        list.setPrefHeight(50);
+        list.setLayoutX(180);
+        list.setLayoutY(110);
+
+        //Layouts
+        VBox label = new VBox();
+        label.getChildren().addAll(id, medico);
+        label.setSpacing(20);
+
+        VBox campos = new VBox();
+        campos.getChildren().addAll(tfid, tfmedico, list);
+        campos.setSpacing(15);
+
+        HBox todo = new HBox();
+        todo.getChildren().addAll(label, campos);
+        todo.setLayoutX(200);
+        todo.setSpacing(15);
+
+        HBox botones = new HBox();
+        botones.getChildren().addAll(crear, asignar, menu);
+        botones.setLayoutX(180);
+        botones.setSpacing(20);
+
+        AnchorPane ap = new AnchorPane();
+        ap.getChildren().addAll(todo, botones, list);
+
+        AnchorPane.setTopAnchor(todo, 20.0);
+        AnchorPane.setBottomAnchor(botones, 20.0);
+
+        //Evento del boton menu
+        menu.setOnAction(e -> {
+            //Regresa al menu Principal
+            SistemaTurnosG3.primaryStage.setScene(StageAdmin.crearMA());
+        });
+
+        /*Evento del boton asignar, coloca en el campo Medico, los medicos que aun no
+        han sido asignados a alguna puesto*/
+        asignar.setOnAction(e -> {
+            if (list.getSelectionModel().getSelectedItems() == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("MENSAJE DEL SISTEMA");
+                alert.setHeaderText("NO HA SELECCIONADO UN DOCTOR");
+                alert.showAndWait();
+            } else {
+                String doctor = list.getSelectionModel().getSelectedItem().toString();
+                posicion = list.getSelectionModel().getSelectedIndex();
+                tfmedico.setText(doctor);
+            }
+
+        });
+
+        //Evento del boton crear, guarda en un archivo de texto un puesto medico
+        crear.setOnAction(e -> {
+            FileWriter fr;
+            try {
+                fr = new FileWriter("puestos.txt", true);
+                try (BufferedWriter bw = new BufferedWriter(fr);) {
+                    //Se escribe en el archivo de texto los puestos
+
+                    //Se crea el puesto y por ende se le asigna al medico el puesto
+                    Puesto p = new Puesto(Integer.parseInt(tfid.getText()), lm.get(posicion));
+                    bw.write(tfid.getText() + "," + tfmedico.getText());
+                    bw.newLine();
+                    //Se confirma que el proceso ha sido exitoso
+                    Alert a1 = new Alert(Alert.AlertType.INFORMATION);
+                    a1.setTitle("SISTEMA");
+                    a1.setContentText("DATOS GUARDADOS CORRECTAMENTE");
+                    a1.showAndWait();
+                    //Se le asigna al medico ese puesto 
+//                    lm.get(posicion).setIdpuesto(Integer.parseInt(tfid.getText()));
+                    //Se actualiza el archivo de texto
+                    Sistema.ActualizaMedicosText();
+                    //Se vacian los campos de texto
+                    tfid.setText("");
+                    tfmedico.setText("");
+                    //Se remueve de la lista el medico
+                    items.remove(posicion);
+
+                } catch (IOException ex) {
+                    Logger.getLogger(StageAdminPuestos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(StageAdminPuestos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        });
+
+        Scene AdminPuestos = new Scene(ap, CONSTANTES.ANCHO_MENUADMIN, CONSTANTES.ALTO_MENUADMIN);
+        return AdminPuestos;
+
+    }
+
+}

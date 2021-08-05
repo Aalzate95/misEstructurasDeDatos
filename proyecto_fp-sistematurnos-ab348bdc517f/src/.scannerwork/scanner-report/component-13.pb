@@ -1,0 +1,1 @@
+%espol/edu/ec/modelo/tdas/Sintoma.java 2javaX.hr%espol/edu/ec/modelo/tdas/Sintoma.java

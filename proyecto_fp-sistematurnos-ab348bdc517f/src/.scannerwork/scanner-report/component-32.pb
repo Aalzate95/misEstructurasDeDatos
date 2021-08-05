@@ -1,0 +1,1 @@
+ espol/edu/ec/utilitarios :!respol\edu\ec\utilitarios

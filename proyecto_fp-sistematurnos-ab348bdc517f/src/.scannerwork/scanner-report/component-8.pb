@@ -1,0 +1,1 @@
+$espol/edu/ec/modelo/tdas/Puesto.java 2javaX:hr$espol/edu/ec/modelo/tdas/Puesto.java

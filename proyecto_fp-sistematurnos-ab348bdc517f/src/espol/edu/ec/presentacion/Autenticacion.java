@@ -1,0 +1,95 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package espol.edu.ec.presentacion;
+
+import espol.edu.ec.modelo.Sistema;
+import espol.edu.ec.presentacion.admin.StageAdmin;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+
+/**
+ * Clase que permite autenticarse como administrador o conductor
+ *
+ * @author grupoArmada
+ */
+public class Autenticacion {
+
+    private static ImageView serviceLogo, logoKey, fondo;
+
+    /**
+     * Metodo que crea la interfaz de ingreso a la aplicacion
+     *
+     * @return Scene
+     */
+    public static Scene login() {
+
+        serviceLogo = Logos.imgService();
+        fondo = Logos.fondo();
+        logoKey = Logos.llave();
+        Label lus = new Label("Usuario: ");
+        lus.setLayoutX(50);
+        lus.setLayoutY(165);
+
+        Label lcon = new Label("Contraseña: ");
+        lcon.setLayoutX(50);
+        lcon.setLayoutY(215);
+
+        TextField tus = new TextField();
+        tus.setPromptText("Ingrese su Usuario");
+        tus.setLayoutX(200);
+        tus.setLayoutY(165);
+
+        PasswordField tcon = new PasswordField();
+        tcon.setPromptText("Ingrese su Contraseña");
+        tcon.setLayoutX(200);
+        tcon.setLayoutY(215);
+        Button btni = new Button("Login");
+        btni.setLayoutX(75);
+        btni.setLayoutY(265);
+        btni.setMinSize(100, 30);
+
+        Button btns = new Button("Salir");
+        btns.setLayoutX(200);
+        btns.setLayoutY(265);
+        btns.setMinSize(100, 30);
+
+        btns.setOnAction(e -> {
+            SistemaTurnosG3.primaryStage.close();
+        });
+
+        btni.setOnAction(ev -> {
+            String us = tus.getText();
+            String con = tcon.getText();
+
+            tus.setText("");
+            tcon.setText("");
+
+            if (!(us.equals("") && con.equals(""))) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Usuario y Clave incorrectos!");
+                alert.showAndWait();
+            } else {
+                SistemaTurnosG3.primaryStage.setScene(StageAdmin.crearMA());
+                Sistema.cargarPacientes();
+
+            }
+        });
+
+        Group root = new Group();
+        root.getChildren().addAll(fondo, lus, lcon, tus, tcon, btns, btni, serviceLogo, logoKey);
+
+        Scene scene = new Scene(root, 400, 350);
+        return scene;
+    }
+
+}

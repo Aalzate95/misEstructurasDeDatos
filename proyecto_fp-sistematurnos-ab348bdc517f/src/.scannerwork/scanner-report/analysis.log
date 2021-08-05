@@ -1,0 +1,142 @@
+Environment variables:
+  - =C:=C:\Users\Charles\Documents\NetBeansProjects\sistematurnos\src
+  - ALLUSERSPROFILE=C:\ProgramData
+  - APPDATA=C:\Users\Charles\AppData\Roaming
+  - COMPUTERNAME=DESKTOP-KS9APUG
+  - ComSpec=C:\WINDOWS\system32\cmd.exe
+  - CommonProgramFiles=C:\Program Files\Common Files
+  - CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+  - CommonProgramW6432=C:\Program Files\Common Files
+  - DriverData=C:\Windows\System32\Drivers\DriverData
+  - ERROR_CODE=0
+  - HOMEDRIVE=C:
+  - HOMEPATH=\Users\Charles
+  - JAVA_EXEC="C:\SonarScanner\bin\..\jre\bin\java.exe"
+  - JAVA_HOME=C:\SonarScanner\bin\..\jre
+  - LOCALAPPDATA=C:\Users\Charles\AppData\Local
+  - LOGONSERVER=\\DESKTOP-KS9APUG
+  - NUMBER_OF_PROCESSORS=4
+  - OS=Windows_NT
+  - OneDrive=C:\Users\Charles\OneDrive
+  - PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+  - PROCESSOR_ARCHITECTURE=AMD64
+  - PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 78 Stepping 3, GenuineIntel
+  - PROCESSOR_LEVEL=6
+  - PROCESSOR_REVISION=4e03
+  - PROJECT_HOME=C:\Users\Charles\Documents\NetBeansProjects\sistematurnos\src
+  - PROMPT=$P$G
+  - PSModulePath=C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\PowerShell\Modules\
+  - PUBLIC=C:\Users\Public
+  - Path=C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;"C:\Program Files\Java\jre1.8.0_131;";C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\WINDOWS\System32\OpenSSH\;C:\cygwin64\bin\;C:\cygwin64\lib\;C:\SonarScanner\bin;C:\Users\Charles\AppData\Local\Programs\Python\Python35\Scripts\;C:\Users\Charles\AppData\Local\Programs\Python\Python35\;C:\Users\Charles\AppData\Local\Microsoft\WindowsApps;C:\SonarScanner\bin;
+  - ProgramData=C:\ProgramData
+  - ProgramFiles=C:\Program Files
+  - ProgramFiles(x86)=C:\Program Files (x86)
+  - ProgramW6432=C:\Program Files
+  - SESSIONNAME=Console
+  - SONAR_SCANNER_HOME=C:\SonarScanner\bin\..
+  - SystemDrive=C:
+  - SystemRoot=C:\WINDOWS
+  - TEMP=C:\Users\Charles\AppData\Local\Temp
+  - TMP=C:\Users\Charles\AppData\Local\Temp
+  - USERDOMAIN=DESKTOP-KS9APUG
+  - USERDOMAIN_ROAMINGPROFILE=DESKTOP-KS9APUG
+  - USERNAME=Charles
+  - USERPROFILE=C:\Users\Charles
+  - VBOX_MSI_INSTALL_PATH=C:\Program Files\Oracle\VirtualBox\
+  - asl.log=Destination=file
+  - scriptdir=C:\SonarScanner\bin
+  - use_embedded_jre=true
+  - windir=C:\WINDOWS
+System properties:
+  - awt.toolkit=sun.awt.windows.WToolkit
+  - file.encoding=Cp1252
+  - file.encoding.pkg=sun.io
+  - file.separator=\
+  - java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment
+  - java.awt.headless=true
+  - java.awt.printerjob=sun.awt.windows.WPrinterJob
+  - java.class.path=C:\SonarScanner\bin\..\lib\sonar-scanner-cli-3.2.0.1227.jar
+  - java.class.version=52.0
+  - java.endorsed.dirs=C:\SonarScanner\jre\lib\endorsed
+  - java.ext.dirs=C:\SonarScanner\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
+  - java.home=C:\SonarScanner\jre
+  - java.io.tmpdir=C:\Users\Charles\AppData\Local\Temp\
+  - java.library.path=C:\SonarScanner\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;"C:\Program Files\Java\jre1.8.0_131;";C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\WINDOWS\System32\OpenSSH\;C:\cygwin64\bin\;C:\cygwin64\lib\;C:\SonarScanner\bin;C:\Users\Charles\AppData\Local\Programs\Python\Python35\Scripts\;C:\Users\Charles\AppData\Local\Programs\Python\Python35\;C:\Users\Charles\AppData\Local\Microsoft\WindowsApps;C:\SonarScanner\bin;;.
+  - java.runtime.name=Java(TM) SE Runtime Environment
+  - java.runtime.version=1.8.0_121-b13
+  - java.specification.name=Java Platform API Specification
+  - java.specification.vendor=Oracle Corporation
+  - java.specification.version=1.8
+  - java.vendor=Oracle Corporation
+  - java.vendor.url=http://java.oracle.com/
+  - java.vendor.url.bug=http://bugreport.sun.com/bugreport/
+  - java.version=1.8.0_121
+  - java.vm.info=mixed mode
+  - java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+  - java.vm.specification.name=Java Virtual Machine Specification
+  - java.vm.specification.vendor=Oracle Corporation
+  - java.vm.specification.version=1.8
+  - java.vm.vendor=Oracle Corporation
+  - java.vm.version=25.121-b13
+  - line.separator=
+
+  - os.arch=amd64
+  - os.name=Windows 10
+  - os.version=10.0
+  - path.separator=;
+  - project.home=C:\Users\Charles\Documents\NetBeansProjects\sistematurnos\src
+  - scanner.home=C:\SonarScanner\bin\..
+  - sun.arch.data.model=64
+  - sun.boot.class.path=C:\SonarScanner\jre\lib\resources.jar;C:\SonarScanner\jre\lib\rt.jar;C:\SonarScanner\jre\lib\sunrsasign.jar;C:\SonarScanner\jre\lib\jsse.jar;C:\SonarScanner\jre\lib\jce.jar;C:\SonarScanner\jre\lib\charsets.jar;C:\SonarScanner\jre\lib\jfr.jar;C:\SonarScanner\jre\classes
+  - sun.boot.library.path=C:\SonarScanner\jre\bin
+  - sun.cpu.endian=little
+  - sun.cpu.isalist=amd64
+  - sun.desktop=windows
+  - sun.io.unicode.encoding=UnicodeLittle
+  - sun.java.command=org.sonarsource.scanner.cli.Main -X
+  - sun.java.launcher=SUN_STANDARD
+  - sun.jnu.encoding=Cp1252
+  - sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+  - sun.os.patch.level=
+  - sun.stderr.encoding=cp850
+  - sun.stdout.encoding=cp850
+  - user.country=US
+  - user.country.format=EC
+  - user.dir=C:\Users\Charles\Documents\NetBeansProjects\sistematurnos\src
+  - user.home=C:\Users\Charles
+  - user.language=en
+  - user.language.format=es
+  - user.name=Charles
+  - user.script=
+  - user.timezone=America/Bogota
+  - user.variant=
+SonarQube plugins:
+  - SonarC# 7.0.1.4822 (csharp)
+  - SonarPython 1.9.1.2080 (python)
+  - SonarJava 5.2.0.13398 (java)
+  - Git 1.4.0.1037 (scmgit)
+  - PMD 2.6 (pmd)
+  - SonarFlex 2.4.0.1222 (flex)
+  - SonarXML 1.5.0.1373 (xml)
+  - SonarPHP 2.13.0.3107 (php)
+  - SonarTS 1.6.0.2388 (typescript)
+  - Svn 1.7.0.1017 (scmsvn)
+  - SonarJS 4.1.0.6085 (javascript)
+Global properties:
+  - sonar.core.id=AWM__1di_AuUsTyhFu8z
+  - sonar.core.startTime=2018-11-09T08:46:44-0500
+Settings for module: Carlos_Sanchez_proyecto1
+  - sonar.host.url=http://200.9.176.59:9000
+  - sonar.java.binaries=.
+  - sonar.login=******
+  - sonar.password=******
+  - sonar.projectBaseDir=C:\Users\Charles\Documents\NetBeansProjects\sistematurnos\src
+  - sonar.projectKey=Carlos_Sanchez_proyecto1
+  - sonar.projectName=SistematurnosG1
+  - sonar.projectVersion=1.0
+  - sonar.scanner.app=ScannerCli
+  - sonar.scanner.appVersion=3.2.0.1227
+  - sonar.sourceEncoding=windows-1252
+  - sonar.sources=.
+  - sonar.verbose=true
+  - sonar.working.directory=C:\Users\Charles\Documents\NetBeansProjects\sistematurnos\src\.scannerwork

@@ -1,0 +1,123 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package espol.edu.ec.modelo.tdas;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author Charles
+ */
+public class Paciente {
+
+    //Metodo privado que determina el tipo de turno que debe tener
+    private String cedula;
+    private String nombres;
+    private String apellidos;
+    private String genero;
+    private Sintoma sintoma;
+    private int edad;
+    private String turno;
+    public static int contadorPaciente;
+
+    public Paciente(String cedula, String nombres, String apellidos, String genero, int edad, Sintoma sintoma) {
+        this.cedula = cedula;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.genero = genero;
+        this.edad = edad;
+        this.sintoma = sintoma;
+        this.turno = DevuelveTurno(sintoma);
+//        escribirPaciente(this);
+    }
+
+    public Sintoma getSintoma() {
+        return sintoma;
+    }
+
+    public void setS(Sintoma s) {
+        this.sintoma = s;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getTurno() {
+        return turno;
+    }
+
+    public void setTurno(String turno) {
+        this.turno = turno;
+    }
+
+    @Override
+    public String toString() {
+        return cedula + "," + nombres + "," + apellidos + "," + genero + ","
+                + edad + "," + sintoma + "," + turno;
+    }
+
+    public static String DevuelveTurno(Sintoma sintoma) {
+        return sintoma.getTipo().charAt(0) + String.valueOf(++contadorPaciente);
+    }
+    
+    public static void escribirPaciente(Paciente p){
+        try {
+            FileWriter fw;
+            
+            fw = new FileWriter("pacientes.txt", true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            
+            //Verificar que turno sera el que debe tener
+            bw.write(p.toString());
+            bw.newLine();
+            bw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+}
